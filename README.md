@@ -19,7 +19,7 @@ link : https://www.youtube.com/watch?v=7XOs0Qu0gTc
 
 I made this for public. So, I did console log for "pass" mismatch.
 
-But, In this Application I Use AJAX for alert warning. No more changes.
+But, In this Application I Use AJAX for alert warning and Not using CSV Folder. No more changes.
 
 
 
