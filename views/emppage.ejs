@@ -1,0 +1,74 @@
+<body>
+    <section class="container-fluid">
+      <!-- for signout I remove cookie when click. for less code I use this -->
+      <div class="float-end"><a class="btn btn-primary m-2" href="/emp/signin" onclick="document.cookie = 'emp_id=; path=/;'; document.cookie.remove('emp_id');">signout</a></div><br>
+        <br>
+      <div class="container">
+        <hr>
+        <h5>Create Interview</h3>
+        <form action="/emp/update" method="POST">
+          <div class="mb-3">
+            <label for="stuid" class="form-label">Student ID</label>
+            <input type="text" name="stuid"  class="form-control" id="stuid">
+          </div>
+          <div class="mb-3">
+            <label for="comp" class="form-label">Company Name</label>
+            <input type="text" name="comp"  class="form-control" id="comp">
+          </div>
+          <div class="mb-12">
+            <label for="date" class="form-label">Scheduled Date</label>
+            <input type="date" name="shdate"  class="form-control" id="date">
+          </div>
+          <br>
+          <input type="hidden" name="result" value="Pending">
+          <input type="submit" class="btn btn-success" value="Schedule Interview">
+        </form>
+      </div>
+      <br>
+      <hr>
+      <a class="float-end btn btn-info m-2" href="csvdownload">csvdownload</a>
+        <h3>List of Interviews</h3>
+        <table class="table table-hover container-fluid table-bordered">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Name</th>
+              <th>Status</th>
+              <th colspan="3">Scores</th>
+              <th colspan="3">Interview</th>
+            </tr>
+            <tr>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th>DSA</th>
+              <th>Web Development</th>
+              <th>React</th>
+              <th>Result</th>
+              <th>Company</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% stdlist.forEach(function(student) { %>
+            <tr>
+              <td><%= student.id %></td>
+              <td><%= student.name === null || student.name === undefined ? "guest" : student.name %></td>
+              <td><span style='color: <%= student.status ? "green" : "red" %>'><%= student.status ? "Placed" : "Not Placed" %></span></td>
+              <td><%= student.dsa %></td>
+              <td><%= student.webd %></td>
+              <td><%= student.react %></td>
+              <!-- using reverse fuction to make latest entry first only for interview -->
+              <% student.interview.reverse().forEach((subitem) => { %> 
+                <td><%= subitem.result ? subitem.result : "Pending" %></td>
+                <td><%= subitem.comp %></td>
+                <td><%= subitem.date.toDateString() %></td>
+                <% }) %>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+        <br>
+        
+      </section>
+</body>

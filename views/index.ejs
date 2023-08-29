@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <div class="container">
+      <h2 class="m-2">Student Details</h2>
+      <form action="/stdlist/studentcreate" method="POST">
+        <div class="mb-3">
+          <label for="batch" class="form-label">Batch</label>
+          <input type="text" name="batch" class="form-control" id="batch">
+        </div>
+        <section class="container">
+          <hr>
+          <h5>Student Basic Details</h5>
+          <div class="mb-3">
+            <label for="stuname" class="form-label">Student Name</label>
+            <input type="text" name="name" class="form-control" id="stuname">
+          </div>
+          <div class="mb-3">
+            <label for="college" class="form-label">College</label>
+            <input type="text" name="college" class="form-control" id="college">
+          </div>
+          <div class="mb-3 form-check">
+            <input type="checkbox" name="status" class="form-check-input" id="status">
+            <label class="form-check-label" for="status">Check this if you are placed</label>
+          </div>
+        </section>
+        <section class="container row g-3 align-items-cente">
+          <hr>
+          <h5>Course Scores</h5>
+          <div class="col-auto">
+            <label for="dsa" class="form-label">DSA Final Score</label>
+            <input type="number" name="dsa" class="form-control" id="dsa">
+          </div>
+          <div class="col-auto">
+            <label for="webd" class="form-label">Web Devlopment Final Score</label>
+            <input type="number" name="webd" class="form-control" id="webd">
+          </div>
+          <div class="col-auto">
+            <label for="react" class="form-label">React Final Score</label>
+            <input type="number" name="react" class="form-control" id="react">
+          </div>
+        </section>
+        <section class="container">
+          <hr>
+          <h5>Interview Details</h5>
+          <div class="mb-3">
+            <label for="comp" class="form-label">Company Name</label>
+            <input type="text" name="comp" class="form-control" id="comp">
+          </div>
+          <div class="mb-12">
+            <label for="date" class="form-label">Date</label>
+            <input type="date" name="date" class="form-control" id="date">
+          </div>
+          <br>
+          <label for="result">Interview Result&nbsp</label>
+          <select class="btn btn-secondary" name="result" type="button" id="result">
+            <option  value="">Select</option>
+            <option value="Pass">Pass</option>
+            <option value="Fail">Fail</option>
+            <option value="On Hold">On Hold</option>
+            <option value="Didn't Attempt">Didn't Attempt</option>
+          </select>
+        </section>
+        <hr>       
+        <input type="submit" class="btn btn-primary" value="Submit Details">
+      </form>
+
+    </div>
+  </body>
+
+  <script src="../public/javascripts/index.js"></script>
+  
+</html>

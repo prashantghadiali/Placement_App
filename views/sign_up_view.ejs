@@ -1,0 +1,84 @@
+<body>
+    <div class="container mt-2 ">
+        <form action="/emp/create" method="POST">
+            <div class="mb-3">
+              <label for="emailsignin" class="form-label">Email address</label>
+              <input type="email" name="email" class="form-control" id="emailsignin" aria-describedby="emailHelp">
+              <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" name="password" class="form-control" id="password">
+            </div>
+            <div class="mb-3">
+              <label for="confpass" class="form-label">Confirm Password</label>
+              <input type="password" name="conf_pass" class="form-control" id="confpass">
+            </div>
+            <div class="alert alert-warning" id="msg" role="alert" hidden>
+              <br>
+            </div>
+            <input type="submit" class="btn btn-primary" value="Sign Up">
+          </form>
+
+          <!-- to center div. I use center tag -->
+          <center><div class="card-body">
+            <h5 class="card-title">Already Logged Signed Up?</h5>
+            <br>
+            <a href="/emp/signin" class="btn btn-primary">Go to Signin</a>
+        </div></center>
+        <br>
+        
+    </div>
+</body>
+
+<script>
+  $(document).ready(function(){
+  $("form").submit(function(event) {
+    // prevent the default action of reloading the page
+    event.preventDefault();
+    
+    // get the action attribute from the form
+    var actionUrl = event.currentTarget.action;
+    console.log(actionUrl);
+    // serialize the form data
+    var formData = $(this).serialize();
+    console.log("form", formData);
+
+    $.ajax({
+      type: "POST",
+      url: actionUrl,
+      data: formData,
+      success: function (response) {
+        if(response){
+            // display the success message
+            console.log("success");
+            $("#msg").html("");
+            $("#msg").html(response.messeage + `&nbsp; Please &nbsp;<a href="/emp/signin"><button type="button" class="btn btn-success">Log IN</button></a>&nbsp;`);
+            $("#msg").removeClass("alert-warning");
+            $("#msg").addClass("alert-success");
+            $('#msg').removeAttr('hidden');
+            // window.location.pathname = "/employee/signin"
+        } else {
+          // diplaying errors
+          $("#msg").html("");
+          $("#msg").html(response.messeage);
+          $("#msg").removeClass("alert-success");
+          $("msg").addClass("alert-success");
+        }
+        // show the message div
+        $('#msg').removeAttr('hidden');
+      },
+      error: function(error){
+        console.log("error");
+        if (error) {
+          $("#msg").html("");
+          $("#msg").html(error.responseJSON.messeage);
+          $("#msg").removeClass("alert-success");
+          $("msg").addClass("alert-warning");
+          $('#msg').removeAttr('hidden');
+        }
+      }
+    });
+  });
+});
+</script>
