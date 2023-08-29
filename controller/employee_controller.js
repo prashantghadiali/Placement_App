@@ -144,7 +144,7 @@ module.exports.updateStudent = async function(req, res) {
 module.exports.csvdown = async function(req, res){
     try {
         // creating writestream from fs
-        const ws = fs.createWriteStream('public/CSV/StudentsData.csv');
+        const ws = fs.createWriteStream('public/StudentsData.csv');
         // getting student model, find all in less required data(Enabling the lean option tells Mongoose to skip instantiating a full Mongoose document)
         // exec method will execute the query and return a Promise
         Student.find().lean().exec().then(function(data) {
